@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slider HTML</title>
+<style>
+.slider-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+}
+
+.slide {
+    min-width: 100%;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="slider-container">
+    <div class="slider">
+        <div class="slide active">
+            <img src="https://via.placeholder.com/500" alt="Slide 1">
+        </div>
+        <div class="slide">
+            <img src="https://via.placeholder.com/500" alt="Slide 2">
+        </div>
+        <div class="slide">
+            <img src="https://via.placeholder.com/500" alt="Slide 3">
+        </div>
+    </div>
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        if (i === index) {
+            slide.classList.add('active');
+        } else {
+            slide.classList.remove('active');
+        }
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+</script>
+
+</body>
+</html>
+
